@@ -161,7 +161,7 @@ pipeline {
                 //load "${JENKINS_HOME}/parameters.groovy"
 
                 
-                echo "HELM_REPO  is ${HELM_REPO}"
+                echo "HELM_REPO  is https://kubernetes-charts.storage.googleapis.com"
 
                 // Define a unique name for the tests container and helm release
                 script {
@@ -180,7 +180,7 @@ pipeline {
             steps {
                 
                 echo "Packing helm chart"
-                sh "${WORKSPACE}/build.sh --pack_helm --push_helm --helm_repo ${HELM_REPO}"
+                sh "${WORKSPACE}/build.sh --pack_helm --push_helm --helm_repo 'https://kubernetes-charts.storage.googleapis.com'"
             }
         }
 
