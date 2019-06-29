@@ -145,7 +145,7 @@ pipeline {
                         url: 'https://github.com/shashidhar-bejjenki/jenkins-pipeline-kubernetes.git'
 
                 // Validate kubectl
-                sh "kubectl cluster-info"
+                sh "${KUBECTL_CMD} cluster-info"
 
                 // Init helm client
                 sh "helm init"
