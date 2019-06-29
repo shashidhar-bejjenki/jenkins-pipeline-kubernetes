@@ -184,7 +184,7 @@ pipeline {
             }
         }
 
-        ////////// Step 4 //////////
+   /*     ////////// Step 4 //////////
         stage('Deploy to dev') {
             steps {
                 script {
@@ -212,7 +212,7 @@ pipeline {
                     helmDelete (namespace, "${ID}")
                 }
             }
-        }
+        }*/
 
       
 
