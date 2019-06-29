@@ -214,35 +214,7 @@ pipeline {
             }
         }
 
-        ////////// Step 5 //////////
-        stage('Deploy to staging') {
-            steps {
-                script {
-                    namespace = 'staging'
-
-                    echo "Deploying application ${IMAGE_NAME}:${DOCKER_TAG} to ${namespace} namespace"
-                    createNamespace (namespace)
-
-                    // Remove release if exists
-                    helmDelete (namespace, "${ID}")
-
-                    // Deploy with helm
-                    echo "Deploying"
-                    helmInstall (namespace, "${ID}")
-                }
-            }
-        }
-
-       
-
-        stage('Cleanup staging') {
-            steps {
-                script {
-                    // Remove release if exists
-                    helmDelete (namespace, "${ID}")
-                }
-            }
-        }
+      
 
        
     }
