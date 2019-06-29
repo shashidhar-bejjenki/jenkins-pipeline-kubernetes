@@ -53,9 +53,8 @@ packHelmChart() {
 
     /usr/local/bin/helm package -d ${BUILD_DIR}/helm ${SCRIPT_DIR}/helm/guestbook || errorExit "Packing helm chart ${SCRIPT_DIR}/helm/guestbook failed"    
     	
-   /usr/local/bin/helm repo index ${SCRIPT_DIR}/helm/guestbook/ --url "https://fantastic-charts.storage.googleapis.com"
-    
-    
+   /usr/local/bin/helm repo index ${SCRIPT_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com
+       
     
 
 # Pushing the Helm chart
