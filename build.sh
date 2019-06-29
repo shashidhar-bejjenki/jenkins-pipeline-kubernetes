@@ -53,7 +53,7 @@ packHelmChart() {
 
     /usr/local/bin/helm package -d ${BUILD_DIR}/helm ${SCRIPT_DIR}/helm/guestbook || errorExit "Packing helm chart ${SCRIPT_DIR}/helm/guestbook failed"
     	
-    /usr/local/bin/helm repo index ${SCRIPT_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com
+    
        
     }
 
@@ -61,13 +61,14 @@ packHelmChart() {
 # Note - this uses the Artifactory API. You can replace it with any other solution you use.
 pushHelmChart() {
     echo -e "\nPushing Helm chart"
-
+    /usr/local/bin/helm repo index ${SCRIPT_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com
     local chart_name=$(ls -1 ${BUILD_DIR}/helm/*.tgz 2> /dev/null)
     echo "Helm chart: ${chart_name}"
 
     [ ! -z "${chart_name}" ] || errorExit "Did not find the helm chart to deploy"
     #curl -u${HELM_USR}:${HELM_PSW} -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
-	curl -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
+    
+    curl -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
     echo
 }
 
