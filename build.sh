@@ -124,7 +124,7 @@ main () {
     
 
     # Cleanup
-    rm -rf ${BUILD_DIR}
+  #  rm -rf ${BUILD_DIR}
 
     
     # Pack and push helm chart if needed
