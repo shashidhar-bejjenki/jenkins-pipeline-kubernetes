@@ -6,7 +6,7 @@ BUILD_DIR=${SCRIPT_DIR}/build
 
 
 
-HELM_REPO=${HELM_REG:-https://kubernetes-charts.storage.googleapis.com}
+#HELM_REPO=${HELM_REG:-https://kubernetes-charts.storage.googleapis.com}
 #HELM_USR=${HELM_USR:-admin}
 #HELM_PSW=${HELM_PSW:-password}
 
@@ -60,7 +60,7 @@ packHelmChart() {
     mkdir -p ${BUILD_DIR}/helm
 
     /usr/local/bin/helm package -d ${BUILD_DIR}/helm ${SCRIPT_DIR}/helm/guestbook || errorExit "Packing helm chart ${SCRIPT_DIR}/helm/guestbook failed"
-   # /usr/local/bin/helm repo index ${SCRIPT_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com || errorExit "Index helm chart ${SCRIPT_DIR}/helm/guestbook failed"
+   
     
        
     }
@@ -77,7 +77,10 @@ pushHelmChart() {
     [ ! -z "guestbook" ] || errorExit "Did not find the helm chart to deploy"
     #curl -u${HELM_USR}:${HELM_PSW} -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
     
-    curl -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
+    #curl -T ${chart_name} "http://127.0.0.1:8879/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
+    
+    /usr/local/bin/helm repo index /var/lib/jenkins/.helm/repository/local/ --url https://kubernetes-charts.storage.googleapis.com || errorExit "Index helm chart ${SCRIPT_DIR}/helm/guestbook failed"
+    
     echo
 }
 
