@@ -79,9 +79,9 @@ pushHelmChart() {
     
     #curl -T ${chart_name} "http://127.0.0.1:8879/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
     
-    mkdir ${BUILD_DIR}/helm/guestbook
-    mv ${BUILD_DIR}/helm/guestbook-0.1.0.tgz ${BUILD_DIR}/helm/guestbook
-    /usr/local/bin/helm repo index ${BUILD_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com || errorExit "Index helm chart ${SCRIPT_DIR}/helm/guestbook failed"
+   # mkdir ${BUILD_DIR}/helm/guestbook
+    mv ${BUILD_DIR}/helm/guestbook-0.1.0.tgz /usr/local/helm/charts/guest/guestbook-0.1.0.tgz
+    /usr/local/bin/helm repo index /usr/local/helm/charts/guest/ --url https://kubernetes-charts.storage.googleapis.com || errorExit "Index helm chart ${SCRIPT_DIR}/helm/guestbook failed"
 
     
    # mv /var/lib/jenkins/.helm/repository/local/index.yaml ${BUILD_DIR}/helm/guestbook/index.yaml
