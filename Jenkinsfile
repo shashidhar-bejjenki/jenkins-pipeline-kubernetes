@@ -180,7 +180,7 @@ pipeline {
             steps {
                 
                 echo "Packing helm chart"
-                sh "${WORKSPACE}/build.sh --pack_helm --push_helm --helm_repo 'https://kubernetes-charts.storage.googleapis.com'"
+                sh "${WORKSPACE}/build.sh --pack_helm --helm_repo 'https://kubernetes-charts.storage.googleapis.com'"
                 sh "${WORKSPACE}/build.sh --push_helm --helm_repo 'https://kubernetes-charts.storage.googleapis.com'"
             }
         }
