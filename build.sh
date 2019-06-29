@@ -70,10 +70,11 @@ packHelmChart() {
 pushHelmChart() {
     echo -e "\nPushing Helm chart"
     
-    local chart_name=$(ls -1 ${BUILD_DIR}/helm/*.tgz 2> /dev/null)
+    #local chart_name=$(ls -1 ${BUILD_DIR}/helm/*.tgz 2> /dev/null)
+    local chart_name="guestbook"
     echo "Helm chart: ${chart_name}"
 
-    [ ! -z "${chart_name}" ] || errorExit "Did not find the helm chart to deploy"
+    [ ! -z "guestbook" ] || errorExit "Did not find the helm chart to deploy"
     #curl -u${HELM_USR}:${HELM_PSW} -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
     
     curl -T ${chart_name} "${HELM_REPO}/$(basename ${chart_name})" || errorExit "Uploading helm chart failed"
