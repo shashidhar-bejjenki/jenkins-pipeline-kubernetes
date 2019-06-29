@@ -85,7 +85,7 @@ pushHelmChart() {
    
     
     /usr/local/bin/helm repo index ${BUILD_DIR}/helm/guestbook/ --url https://kubernetes-charts.storage.googleapis.com || errorExit "Index helm chart ${SCRIPT_DIR}/helm/guestbook failed"
-    
+     /usr/local/bin/helm install ${BUILD_DIR}/helm/guestbook/*.tgz
     echo
 }
 
