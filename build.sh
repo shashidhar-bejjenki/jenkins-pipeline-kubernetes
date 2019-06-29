@@ -49,12 +49,12 @@ packHelmChart() {
     echo -e "\nPacking Helm chart"
     
     
-    mkdir -p /home/jenkins/.helm/repository/local
-    cat <<EOF > /home/jenkins/.helm/repository/local/index.yaml
-    apiVersion: v1
-    entries: {}
-    generated: 2019-27-19T11:33:32.034887011-06:00
-    EOF
+   #mkdir -p /home/jenkins/.helm/repository/local
+    #cat <<EOF > /home/jenkins/.helm/repository/local/index.yaml
+    #apiVersion: v1
+    #entries: {}
+    #generated: 2019-27-19T11:33:32.034887011-06:00
+    #EOF
 
     [ -d ${BUILD_DIR}/helm ] && rm -rf ${BUILD_DIR}/helm
     mkdir -p ${BUILD_DIR}/helm
